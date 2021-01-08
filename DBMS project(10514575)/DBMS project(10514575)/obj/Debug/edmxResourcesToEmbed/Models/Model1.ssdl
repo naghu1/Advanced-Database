@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="laptopdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Branch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="int" Nullable="false" />
+    <Property Name="BranchName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EIRCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryType" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbl_Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="int" Nullable="false" />
+    <Property Name="ClientName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClientEmail_Address" Type="varchar" MaxLength="100" />
+    <Property Name="ClientContact_no" Type="int" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EIRCode" Type="int" Nullable="false" />
+    <Property Name="Feedback" Type="xml" />
+  </EntityType>
+  <EntityType Name="tbl_Laptop">
+    <Key>
+      <PropertyRef Name="SerialNo" />
+    </Key>
+    <Property Name="SerialNo" Type="int" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Company" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="TotalAmount" Type="int" Nullable="false" />
+    <Property Name="ClientID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ServiceLine">
+    <Key>
+      <PropertyRef Name="ServiceNumber" />
+    </Key>
+    <Property Name="ServiceNumber" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="TotalServicePrice" Type="real" Nullable="false" />
+    <Property Name="ServiceDate" Type="date" Nullable="false" />
+    <Property Name="ServiceID" Type="int" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="SerialNo" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Services">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceRate" Type="real" Nullable="false" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="CategoryID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'laptopdb.dbo.Service_Price' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Service_Price">
+    <Key>
+      <PropertyRef Name="ServiceName" />
+    </Key>
+    <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TotalServicePrice" Type="real" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'laptopdb.dbo.tablesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tablesview">
+    <Key>
+      <PropertyRef Name="Model" />
+    </Key>
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="50" />
+    <Property Name="OrderDate" Type="date" />
+  </EntityType>
+  <Association Name="FK__tbl_Lapto__Clien__17F790F9">
+    <End Role="tbl_Client" Type="Self.tbl_Client" Multiplicity="0..1" />
+    <End Role="tbl_Laptop" Type="Self.tbl_Laptop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="tbl_Laptop">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Order__Clien__1332DBDC">
+    <End Role="tbl_Client" Type="Self.tbl_Client" Multiplicity="0..1" />
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Servi__Branc__1CBC4616">
+    <End Role="tbl_Branch" Type="Self.tbl_Branch" Multiplicity="0..1" />
+    <End Role="tbl_Services" Type="Self.tbl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="tbl_Services">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Servi__Categ__1DB06A4F">
+    <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1" />
+    <End Role="tbl_Services" Type="Self.tbl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="tbl_Services">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Servi__Order__2180FB33">
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="0..1" />
+    <End Role="tbl_ServiceLine" Type="Self.tbl_ServiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="tbl_ServiceLine">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Servi__Seria__22751F6C">
+    <End Role="tbl_Laptop" Type="Self.tbl_Laptop" Multiplicity="0..1" />
+    <End Role="tbl_ServiceLine" Type="Self.tbl_ServiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Laptop">
+        <PropertyRef Name="SerialNo" />
+      </Principal>
+      <Dependent Role="tbl_ServiceLine">
+        <PropertyRef Name="SerialNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Servi__Servi__208CD6FA">
+    <End Role="tbl_Services" Type="Self.tbl_Services" Multiplicity="0..1" />
+    <End Role="tbl_ServiceLine" Type="Self.tbl_ServiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Services">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="tbl_ServiceLine">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetLaptopServiceDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GroupbyHaving" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="LaptopService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientEmail_Address" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RetrieveAllDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectPremiumUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryType" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="laptopdbModelStoreContainer">
+    <EntitySet Name="tbl_Branch" EntityType="Self.tbl_Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Client" EntityType="Self.tbl_Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Laptop" EntityType="Self.tbl_Laptop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ServiceLine" EntityType="Self.tbl_ServiceLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Services" EntityType="Self.tbl_Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service_Price" EntityType="Self.Service_Price" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Service_Price].[ServiceName] AS [ServiceName], 
+    [Service_Price].[TotalServicePrice] AS [TotalServicePrice]
+    FROM [dbo].[Service_Price] AS [Service_Price]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tablesview" EntityType="Self.tablesview" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tablesview].[Model] AS [Model], 
+    [tablesview].[ServiceName] AS [ServiceName], 
+    [tablesview].[OrderDate] AS [OrderDate]
+    FROM [dbo].[tablesview] AS [tablesview]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tbl_Lapto__Clien__17F790F9" Association="Self.FK__tbl_Lapto__Clien__17F790F9">
+      <End Role="tbl_Client" EntitySet="tbl_Client" />
+      <End Role="tbl_Laptop" EntitySet="tbl_Laptop" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Order__Clien__1332DBDC" Association="Self.FK__tbl_Order__Clien__1332DBDC">
+      <End Role="tbl_Client" EntitySet="tbl_Client" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Servi__Branc__1CBC4616" Association="Self.FK__tbl_Servi__Branc__1CBC4616">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_Services" EntitySet="tbl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Servi__Categ__1DB06A4F" Association="Self.FK__tbl_Servi__Categ__1DB06A4F">
+      <End Role="tbl_Category" EntitySet="tbl_Category" />
+      <End Role="tbl_Services" EntitySet="tbl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Servi__Order__2180FB33" Association="Self.FK__tbl_Servi__Order__2180FB33">
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+      <End Role="tbl_ServiceLine" EntitySet="tbl_ServiceLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Servi__Seria__22751F6C" Association="Self.FK__tbl_Servi__Seria__22751F6C">
+      <End Role="tbl_Laptop" EntitySet="tbl_Laptop" />
+      <End Role="tbl_ServiceLine" EntitySet="tbl_ServiceLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Servi__Servi__208CD6FA" Association="Self.FK__tbl_Servi__Servi__208CD6FA">
+      <End Role="tbl_Services" EntitySet="tbl_Services" />
+      <End Role="tbl_ServiceLine" EntitySet="tbl_ServiceLine" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

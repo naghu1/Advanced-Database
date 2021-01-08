@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="laptopdbModelStoreContainer" CdmEntityContainer="laptopdbEntities">
+    <EntitySetMapping Name="tbl_Branch">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Branch">
+        <MappingFragment StoreEntitySet="tbl_Branch">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="EIRCode" ColumnName="EIRCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Category">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Category">
+        <MappingFragment StoreEntitySet="tbl_Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Client">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Client">
+        <MappingFragment StoreEntitySet="tbl_Client">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ClientEmail_Address" ColumnName="ClientEmail_Address" />
+          <ScalarProperty Name="ClientContact_no" ColumnName="ClientContact_no" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="EIRCode" ColumnName="EIRCode" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Laptop">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Laptop">
+        <MappingFragment StoreEntitySet="tbl_Laptop">
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Order">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Order">
+        <MappingFragment StoreEntitySet="tbl_Order">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ServiceLine">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_ServiceLine">
+        <MappingFragment StoreEntitySet="tbl_ServiceLine">
+          <ScalarProperty Name="ServiceNumber" ColumnName="ServiceNumber" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="TotalServicePrice" ColumnName="TotalServicePrice" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Services">
+      <EntityTypeMapping TypeName="laptopdbModel.tbl_Services">
+        <MappingFragment StoreEntitySet="tbl_Services">
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceRate" ColumnName="ServiceRate" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_Price">
+      <EntityTypeMapping TypeName="laptopdbModel.Service_Price">
+        <MappingFragment StoreEntitySet="Service_Price">
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="TotalServicePrice" ColumnName="TotalServicePrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tablesviews">
+      <EntityTypeMapping TypeName="laptopdbModel.tablesview">
+        <MappingFragment StoreEntitySet="tablesview">
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetLaptopServiceDetails" FunctionName="laptopdbModel.Store.GetLaptopServiceDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laptopdbModel.GetLaptopServiceDetails_Result">
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ServiceNumber" ColumnName="ServiceNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GroupbyHaving" FunctionName="laptopdbModel.Store.GroupbyHaving">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laptopdbModel.GroupbyHaving_Result">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LaptopService" FunctionName="laptopdbModel.Store.LaptopService" />
+    <FunctionImportMapping FunctionImportName="RetrieveAllDetails" FunctionName="laptopdbModel.Store.RetrieveAllDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laptopdbModel.RetrieveAllDetails_Result">
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ClientContact_no" ColumnName="ClientContact_no" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceRate" ColumnName="ServiceRate" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="EIRCode" ColumnName="EIRCode" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectPremiumUsers" FunctionName="laptopdbModel.Store.SelectPremiumUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laptopdbModel.SelectPremiumUsers_Result">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

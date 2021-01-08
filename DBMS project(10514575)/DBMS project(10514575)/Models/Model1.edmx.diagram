@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa7472bb1ac2475bbf507a1f9fea9cc1" Name="Diagram1">
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Branch" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Category" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Client" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Laptop" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Order" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_ServiceLine" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tbl_Services" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.Service_Price" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="laptopdbModel.tablesview" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Servi__Branc__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Servi__Categ__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Lapto__Clien__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Order__Clien__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Servi__Seria__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Servi__Order__2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="laptopdbModel.FK__tbl_Servi__Servi__208CD6FA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

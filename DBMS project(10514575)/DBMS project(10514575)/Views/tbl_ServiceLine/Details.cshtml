@@ -1,0 +1,66 @@
+﻿@model DBMS_project_10514575_.Models.tbl_ServiceLine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_ServiceLine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalServicePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalServicePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Laptop.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Laptop.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Order.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Order.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Services.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Services.ServiceName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
